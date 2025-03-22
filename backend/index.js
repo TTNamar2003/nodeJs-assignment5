@@ -7,9 +7,9 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", taskRoutes);
 
-app.use((err) => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: "Internal Server Error" });
+  res.status(500).json({ error: err.message || "Internal Server Error" });
 });
 
 app.listen(process.env.SERVER_PORT, () => {

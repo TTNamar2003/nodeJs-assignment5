@@ -3,14 +3,26 @@ const taskmodel = new TaskModel();
 
 export class TaskService {
   async getTasks() {
-    return await taskmodel.getAllTasks();
+    try {
+      return await taskmodel.getAllTasks();
+    } catch (error) {
+      throw error;
+    }
   }
 
   async addTask(title) {
-    return await taskmodel.createTask(title);
+    try {
+      return await taskmodel.createTask(title);
+    } catch (error) {
+      throw error;
+    }
   }
 
   async removeTask(id) {
-    await taskmodel.deleteTask(id);
+    try {
+      await taskmodel.deleteTask(id);
+    } catch (error) {
+      throw error;
+    }
   }
 }
