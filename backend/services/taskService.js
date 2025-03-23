@@ -1,10 +1,13 @@
 import { TaskModel } from "../models/taskModel.js";
-const taskmodel = new TaskModel();
 
 export class TaskService {
+  constructor(taskModel = new TaskModel()) {
+    this.taskModel = taskModel;
+  }
+
   async getTasks() {
     try {
-      return await taskmodel.getAllTasks();
+      return await this.taskModel.getAllTasks();
     } catch (error) {
       throw error;
     }
@@ -12,7 +15,7 @@ export class TaskService {
 
   async addTask(title) {
     try {
-      return await taskmodel.createTask(title);
+      return await this.taskModel.createTask(title);
     } catch (error) {
       throw error;
     }
@@ -20,7 +23,7 @@ export class TaskService {
 
   async removeTask(id) {
     try {
-      await taskmodel.deleteTask(id);
+      await this.taskModel.deleteTask(id);
     } catch (error) {
       throw error;
     }
